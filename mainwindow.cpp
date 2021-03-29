@@ -12,6 +12,8 @@ MainWindow::MainWindow(QWidget *parent)
     this->time=0;
     level=1;
     inGame=false;
+    blockUi=false;
+    delay=false;
 
     tlo=new Tlo();
     menu=new Menu();
@@ -49,6 +51,7 @@ void MainWindow::play()
     fx->play();
     blockUi=true;
     inGame=true;
+    lost=false;
     pies=new Pies();
     wrog=new Wrog();
     scene->removeItem(menu);
@@ -113,7 +116,7 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
 
         if(!event->isAutoRepeat())pies->zmienKierunek(1);
     }
-    if(event->key()==Qt::Key_C && !event->isAutoRepeat() && !lost && inGame)
+    if(event->key()==Qt::Key_C && inGame)
     {
         if(!delay){
             pustak=new Pustak();
