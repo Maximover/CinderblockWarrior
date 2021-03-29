@@ -1,0 +1,48 @@
+<RCC>
+    <qresource prefix="/new/prefix1">
+        <file>Stuff/Pies1.png</file>
+        <file>Stuff/Pies2.png</file>
+        <file>Stuff/pustak.png</file>
+        <file>Stuff/robber.png</file>
+        <file>Stuff/robber_2.png</file>
+        <file>Stuff/robber1.png</file>
+        <file>Stuff/robber1_2.png</file>
+        <file>Stuff/robber2.png</file>
+        <file>Stuff/robber2_2.png</file>
+        <file>Stuff/Tlo1.png</file>
+        <file>Stuff/brick.svg</file>
+        <file>Stuff/boonk.wav</file>
+        <file>Stuff/menu.png</file>
+        <file>Stuff/Megadeth-DukeNukemThemeShort.wav</file>
+        <file>Stuff/ster.png</file>
+        <file>Stuff/ui.png</file>
+        <file>Stuff/Team Fortress 2 Music Flourish.mp3</file>
+        <file>Stuff/win.png</file>
+        <file>Stuff/brama.png</file>
+        <file>Stuff/lose.wav</file>
+        <file>Stuff/youlost.png</file>
+        <file>Stuff/swat.png</file>
+        <file>Stuff/swat_2.png</file>
+        <file>Stuff/swat1.png</file>
+        <file>Stuff/swat1_2.png</file>
+        <file>Stuff/swat2.png</file>
+        <file>Stuff/swat2_2.png</file>
+        <file>Stuff/brama2.png</file>
+        <file>Stuff/Tlo2.png</file>
+        <file>Stuff/pies3.png</file>
+        <file>Stuff/pies4.png</file>
+        <file>Stuff/level2theme.wav</file>
+        <file>Stuff/congrats.png</file>
+        <file>Stuff/pies5.png</file>
+        <file>Stuff/pies6.png</file>
+        <file>Stuff/God_Syria_and_Bashar.wav</file>
+        <file>Stuff/saper.png</file>
+        <file>Stuff/saper_2.png</file>
+        <file>Stuff/saper1.png</file>
+        <file>Stuff/saper1_2.png</file>
+        <file>Stuff/saper2.png</file>
+        <file>Stuff/saper2_2.png</file>
+        <file>Stuff/brama3.png</file>
+        <file>Stuff/Tlo3.png</file>
+    </qresource>
+</RCC>
