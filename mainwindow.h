@@ -54,6 +54,7 @@ private:
     Brama *brama;
     int speed;
     int level;
+    int maxLevels;
     bool delay;
     bool blockUi;
     bool lost;

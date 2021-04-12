@@ -15,6 +15,7 @@ public:
     int level;
     void lvl2();
     void lvl3();
+    void lvl4();
 
 };
 

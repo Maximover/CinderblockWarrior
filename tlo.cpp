@@ -37,3 +37,9 @@ void Tlo::level3()
     setPixmap(QPixmap(":/new/prefix1/Stuff/Tlo3.png"));
     setScale(1);
 }
+
+void Tlo::level4()
+{
+    setPixmap(QPixmap(":/new/prefix1/Stuff/Tlo4.png"));
+    setScale(1);
+}

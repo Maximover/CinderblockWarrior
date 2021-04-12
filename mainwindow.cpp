@@ -35,7 +35,8 @@ MainWindow::MainWindow(QWidget *parent)
     connect(timer,SIGNAL(timeout()),this,SLOT(spawning())); //losowanie spawnu
     setFixedSize(size());
 
-    //level=3;
+    level=3;
+    maxLevels=4;
 }
 
 MainWindow::~MainWindow()
@@ -45,10 +46,6 @@ MainWindow::~MainWindow()
 void MainWindow::play()
 {
     fx->stop();
-    if(level==1)fx->setMedia(QUrl("qrc:/new/prefix1/Stuff/Megadeth-DukeNukemThemeShort.wav")); //ost lvl1
-    else if(level==2) fx->setMedia(QUrl("qrc:/new/prefix1/Stuff/level2theme.wav")); //ost lvl2
-    else if(level==3) fx->setMedia(QUrl("qrc:/new/prefix1/Stuff/God_Syria_and_Bashar.wav")); //ost lvl3
-    fx->play();
     blockUi=true;
     inGame=true;
     lost=false;
@@ -58,23 +55,35 @@ void MainWindow::play()
     brama->setPos(0,320);
     brama->clear();//usunięcie pozostałych przeciwników
     scene->addItem(pies); //piesek
-    if(level==1){
+    switch(level){
+    case 1:
         tlo->level1();
         pies->setPos(x()+740,y()+188);
-    }
-    else if(level==2){
+        fx->setMedia(QUrl("qrc:/new/prefix1/Stuff/Megadeth-DukeNukemThemeShort.wav"));
+        break;
+    case 2:
         tlo->level2();
         brama->level2();
         pies->setPos(x()+740,y()+155);
         pies->lvl2();
-    }
-    else if(level==3){
+        fx->setMedia(QUrl("qrc:/new/prefix1/Stuff/level2theme.wav"));
+        break;
+    case 3:
         tlo->level3();
         brama->level3();
         pies->setPos(x()+740,y()+188);
         pies->lvl3();
+        fx->setMedia(QUrl("qrc:/new/prefix1/Stuff/God_Syria_and_Bashar.wav"));
+        break;
+    case 4:
+        tlo->level4();
+        brama->level4();
+        pies->setPos(x()+740,y()+175);
+        pies->lvl4();
+        fx->setMedia(QUrl("qrc:/new/prefix1/Stuff/The Only Thing they Fear is You.wav"));
+        break;
     }
-
+    fx->play();
     timer->start(600);
 }
 
@@ -84,6 +93,7 @@ void MainWindow::spawning()
         wrog=new Wrog();
         if(level==2)wrog->level2();
         else if(level==3)wrog->level3();
+        else if(level==4)wrog->level4();
         scene->addItem(wrog);
         if(wrog->get_kier()==0) wrog->setPos(x()-900,y()+600); //spawn z lewej
         else wrog->setPos(x()+1500,y()+600); //spawn z prawej
@@ -130,7 +140,7 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
     if(event->key()==Qt::Key_P && !event->isAutoRepeat() && !blockUi) play(); //zacznij grę
     if(event->key()==Qt::Key_S && !blockUi) tlo->control();  //pokaż/schowaj sterowanie
     if(event->key()==Qt::Key_Q && !blockUi) QApplication::quit(); //wyjdź
-    if(event->key()==Qt::Key_N && !inGame && !lost) play(); //przejdź do następnego poziomu
+    if(event->key()==Qt::Key_N && !inGame && !lost && level!=maxLevels+1) play(); //przejdź do następnego poziomu
     if(event->key()==Qt::Key_R && lost){
         lost=false;
         play(); //restart danego poziomu
@@ -142,8 +152,8 @@ void MainWindow::win()
     fx->setMedia(QUrl("qrc:/new/prefix1/Stuff/Team Fortress 2 Music Flourish.mp3"));
     fx->setVolume(100);
     fx->play();
-    if(level!=3)menu->showWin();    //zakończenie gry
-    else menu->congratulations(); //zakończenie poziomu
+    if(level!=maxLevels) menu->showWin();
+    else menu->congratulations();
     scene->addItem(menu);
     delete pies;
     inGame=false;
@@ -166,10 +176,3 @@ void MainWindow::unlock()
 {
     delay=false;
 }
-
-// ***---------------------------------------------------***
-// |#######     Pierwsza kompilacja 26.01.2021      #######|
-// |#####           Final build --.--.----            #####|
-// |#######   Cinderblock Warrior by Wojtuś Pela    #######|
-// **-----------------------------------------------------**
-

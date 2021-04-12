@@ -15,9 +15,11 @@ private slots:
     void podniesBrame();
 public:
     Brama();
+    int speed;
     QTimer *timer;
     void level2();
     void level3();
+    void level4();
 
     void clear();
 };

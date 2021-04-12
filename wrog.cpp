@@ -122,3 +122,34 @@ void Wrog::level3()
         }
     }
 }
+
+void Wrog::level4()
+{
+    if(id_w==0){
+        if(id_k==0){
+            setPixmap(QPixmap(":/new/prefix1/Stuff/demon_2.png"));
+            setScale(0.4);
+        }else{
+            setPixmap(QPixmap(":/new/prefix1/Stuff/demon.png"));
+            setScale(0.4);
+        }
+    }
+    else if(id_w==1){
+        if(id_k==0){
+            setPixmap(QPixmap(":/new/prefix1/Stuff/demon1_2.png"));
+            setScale(0.4);
+        }else{
+            setPixmap(QPixmap(":/new/prefix1/Stuff/demon1.png"));
+            setScale(0.4);
+        }
+    }
+    else{
+        if(id_k==0){
+            setPixmap(QPixmap(":/new/prefix1/Stuff/demon2_2.png"));
+            setScale(0.4);
+        }else{
+            setPixmap(QPixmap(":/new/prefix1/Stuff/demon2.png"));
+            setScale(0.4);
+        }
+    }
+}

@@ -24,6 +24,7 @@ public:
     bool czyOtwiera();
     void level2();
     void level3();
+    void level4();
 
     ~Wrog();
 };
