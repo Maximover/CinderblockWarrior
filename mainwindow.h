@@ -2,10 +2,12 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QMap>
 #include <QTimer>
 #include <QtCore>
 #include <QString>
 #include <QPixmap>
+#include <QPointF>
 #include <QKeyEvent>
 #include <QMediaPlayer>
 #include <QGraphicsScene>
@@ -33,18 +35,21 @@ public:
     ~MainWindow();
 protected:
     void keyPressEvent(QKeyEvent *event);
+    void keyReleaseEvent(QKeyEvent *event);
 private slots:
     void play();
     void spawning();
     void unlock();
     void win();
     void lose();
+    void pressingKeys();
 private:
     Ui::MainWindow *ui;
     qint64 time;
     QTimer *timer;
+    QTimer *move;
+    QMap<int, bool>keys;
     QGraphicsScene *scene;
-    QGraphicsView *view;
     QMediaPlayer *fx;
     Pies *pies;
     Tlo *tlo;

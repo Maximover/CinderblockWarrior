@@ -4,7 +4,7 @@ Pies::Pies()
 {
     level=1;
     setPixmap(QPixmap(":/new/prefix1/Stuff/Pies1.png"));
-    setScale(1);
+    setPos(x()+740,y()+188);
 }
 
 void Pies::zmienKierunek(bool str)
@@ -29,16 +29,19 @@ void Pies::lvl2()
 {
     level=2;
     setPixmap(QPixmap(":/new/prefix1/Stuff/pies3.png"));
+    setPos(740,y()-32);
 }
 
 void Pies::lvl3()
 {
     level=3;
     setPixmap(QPixmap(":/new/prefix1/Stuff/pies5.png"));
+    setPos(740,y());
 }
 
 void Pies::lvl4()
 {
     level=4;
     setPixmap(QPixmap(":/new/prefix1/Stuff/pies7.png"));
+    setPos(740,y()-20);
 }

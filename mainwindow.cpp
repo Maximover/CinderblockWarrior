@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QDebug>
+#include <QScrollBar>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -8,9 +9,8 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    speed=30;
+    speed=10;
     this->time=0;
-    level=1;
     inGame=false;
     blockUi=false;
     delay=false;
@@ -23,7 +23,6 @@ MainWindow::MainWindow(QWidget *parent)
     fx->setMedia(QUrl("qrc:/new/prefix1/Stuff/Megadeth-DukeNukemThemeShort.wav"));
     fx->setVolume(20);
     fx->play();
-
     scene=new QGraphicsScene();
     scene->addItem(brama);
     scene->addItem(tlo);
@@ -33,9 +32,17 @@ MainWindow::MainWindow(QWidget *parent)
 
     timer = new QTimer(this);
     connect(timer,SIGNAL(timeout()),this,SLOT(spawning())); //losowanie spawnu
+    move = new QTimer(this);
+    connect(move,SIGNAL(timeout()),this,SLOT(pressingKeys()));
+    move->start(10);
+
+    ui->graphicsView->horizontalScrollBar()->setValue(1);
+    ui->graphicsView->verticalScrollBar()->setValue(1);
+    ui->graphicsView->horizontalScrollBar()->blockSignals(true);
+    ui->graphicsView->verticalScrollBar()->blockSignals(true);
     setFixedSize(size());
 
-    level=3;
+    level=1;
     maxLevels=4;
 }
 
@@ -52,33 +59,28 @@ void MainWindow::play()
     pies=new Pies();
     wrog=new Wrog();
     scene->removeItem(menu);
-    brama->setPos(0,320);
     brama->clear();//usunięcie pozostałych przeciwników
     scene->addItem(pies); //piesek
     switch(level){
     case 1:
         tlo->level1();
-        pies->setPos(x()+740,y()+188);
         fx->setMedia(QUrl("qrc:/new/prefix1/Stuff/Megadeth-DukeNukemThemeShort.wav"));
         break;
     case 2:
         tlo->level2();
         brama->level2();
-        pies->setPos(x()+740,y()+155);
         pies->lvl2();
         fx->setMedia(QUrl("qrc:/new/prefix1/Stuff/level2theme.wav"));
         break;
     case 3:
         tlo->level3();
         brama->level3();
-        pies->setPos(x()+740,y()+188);
         pies->lvl3();
         fx->setMedia(QUrl("qrc:/new/prefix1/Stuff/God_Syria_and_Bashar.wav"));
         break;
     case 4:
         tlo->level4();
         brama->level4();
-        pies->setPos(x()+740,y()+175);
         pies->lvl4();
         fx->setMedia(QUrl("qrc:/new/prefix1/Stuff/The Only Thing they Fear is You.wav"));
         break;
@@ -91,11 +93,19 @@ void MainWindow::spawning()
 {
     if(QRandomGenerator::global()->bounded(0,3)==2){
         wrog=new Wrog();
-        if(level==2)wrog->level2();
-        else if(level==3)wrog->level3();
-        else if(level==4)wrog->level4();
+        switch(level){
+            case 2:
+                wrog->level2();
+                break;
+            case 3:
+                wrog->level3();
+                break;
+            case 4:
+                wrog->level4();
+                break;
+        }
         scene->addItem(wrog);
-        if(wrog->get_kier()==0) wrog->setPos(x()-900,y()+600); //spawn z lewej
+        if(wrog->get_kier()==0) wrog->setPos(x()-700,y()+600); //spawn z lewej
         else wrog->setPos(x()+1500,y()+600); //spawn z prawej
     }
     //wygrana
@@ -109,48 +119,55 @@ void MainWindow::spawning()
         QTimer::singleShot(1000,this,SLOT(lose()));
     }
 }
-
-void MainWindow::keyPressEvent(QKeyEvent *event)
+void MainWindow::pressingKeys()
 {
-    if(event->key()==Qt::Key_A && inGame)
-    {
-        if(pies->x()<0) return; //pies->setPos(pies->x()+speed,pies->y());
+    if(keys[Qt::Key_A] && inGame){
+        if(pies->x()<0) return;
         else pies->setPos(pies->x()-speed,pies->y());
-
-        if(!event->isAutoRepeat())pies->zmienKierunek(0);
+        pies->zmienKierunek(0);
     }
-    if(event->key()==Qt::Key_D && inGame)
-    {
-        if(pies->x()>1300) return;//pies->setPos(pies->x()-speed,pies->y());
+    if(keys[Qt::Key_D] && inGame){
+        if(pies->x()>1280) return;
         else pies->setPos(pies->x()+speed,pies->y());
-
-        if(!event->isAutoRepeat())pies->zmienKierunek(1);
+        pies->zmienKierunek(1);
     }
-    if(event->key()==Qt::Key_C && inGame)
+    if(keys[Qt::Key_C] && inGame)
     {
         if(!delay){
             pustak=new Pustak();
             scene->addItem(pustak);
-            if(pies->getKier()) pustak->setPos(pies->x()+130,pies->y());
-            else pustak->setPos(pies->x(),pies->y());
+            if(pies->getKier()) pustak->setPos(pies->x()+130,pies->y()+80);
+            else pustak->setPos(pies->x(),pies->y()+80);
             delay=true; //antyspam do pustaków
             QTimer::singleShot(700,this,SLOT(unlock())); //delay między pustakami
         }
+        return;
     }
-    if(event->key()==Qt::Key_P && !event->isAutoRepeat() && !blockUi) play(); //zacznij grę
-    if(event->key()==Qt::Key_S && !blockUi) tlo->control();  //pokaż/schowaj sterowanie
-    if(event->key()==Qt::Key_Q && !blockUi) QApplication::quit(); //wyjdź
-    if(event->key()==Qt::Key_N && !inGame && !lost && level!=maxLevels+1) play(); //przejdź do następnego poziomu
-    if(event->key()==Qt::Key_R && lost){
+    if(keys[Qt::Key_P] && !blockUi) play(); //zacznij grę
+    if(keys[Qt::Key_S] && !blockUi) tlo->control();  //pokaż/schowaj sterowanie
+    if(keys[Qt::Key_Q] && !blockUi) QApplication::quit(); //wyjdź
+    if(keys[Qt::Key_N] && !inGame && !lost && level!=maxLevels+1) play(); //przejdź do następnego poziomu
+    if(keys[Qt::Key_R] && lost){
         lost=false;
         play(); //restart danego poziomu
     }
+}
+void MainWindow::keyPressEvent(QKeyEvent *event)
+{
+    if(event->isAutoRepeat())return;
+    keys[event->key()]=true;
+}
+
+void MainWindow::keyReleaseEvent(QKeyEvent *event)
+{
+    if(event->isAutoRepeat())return;
+    keys[event->key()]=false;
 }
 
 void MainWindow::win()
 {
     fx->setMedia(QUrl("qrc:/new/prefix1/Stuff/Team Fortress 2 Music Flourish.mp3"));
-    fx->setVolume(100);
+    fx->setVolume(50);
     fx->play();
     if(level!=maxLevels) menu->showWin();
     else menu->congratulations();
@@ -163,7 +180,7 @@ void MainWindow::win()
 void MainWindow::lose()
 {
     fx->setMedia(QUrl("qrc:/new/prefix1/Stuff/lose.wav"));
-    fx->setVolume(100);
+    fx->setVolume(50);
     fx->play();
     menu->showLost();
     scene->addItem(menu);
