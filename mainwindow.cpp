@@ -9,7 +9,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    speed=10;
+    speed=6;
     this->time=0;
     inGame=false;
     blockUi=false;
@@ -20,7 +20,7 @@ MainWindow::MainWindow(QWidget *parent)
     brama=new Brama();
 
     fx=new QMediaPlayer();
-    fx->setMedia(QUrl("qrc:/new/prefix1/Stuff/Megadeth-DukeNukemThemeShort.wav"));
+    fx->setMedia(QUrl("qrc:/new/prefix1/Stuff/level1theme.wav"));
     fx->setVolume(20);
     fx->play();
     scene=new QGraphicsScene();
@@ -43,7 +43,7 @@ MainWindow::MainWindow(QWidget *parent)
     setFixedSize(size());
 
     level=1;
-    maxLevels=4;
+    maxLevels=5;
 }
 
 MainWindow::~MainWindow()
@@ -64,7 +64,7 @@ void MainWindow::play()
     switch(level){
     case 1:
         tlo->level1();
-        fx->setMedia(QUrl("qrc:/new/prefix1/Stuff/Megadeth-DukeNukemThemeShort.wav"));
+        fx->setMedia(QUrl("qrc:/new/prefix1/Stuff/level1theme.wav"));
         break;
     case 2:
         tlo->level2();
@@ -76,13 +76,19 @@ void MainWindow::play()
         tlo->level3();
         brama->level3();
         pies->lvl3();
-        fx->setMedia(QUrl("qrc:/new/prefix1/Stuff/God_Syria_and_Bashar.wav"));
+        fx->setMedia(QUrl("qrc:/new/prefix1/Stuff/level3theme.wav"));
         break;
     case 4:
         tlo->level4();
         brama->level4();
         pies->lvl4();
-        fx->setMedia(QUrl("qrc:/new/prefix1/Stuff/The Only Thing they Fear is You.wav"));
+        fx->setMedia(QUrl("qrc:/new/prefix1/Stuff/level4theme.wav"));
+        break;
+    case 5:
+        tlo->level5();
+        brama->level5();
+        pies->lvl5();
+        fx->setMedia(QUrl("qrc:/new/prefix1/Stuff/level5theme.mp3"));
         break;
     }
     fx->play();
@@ -102,6 +108,9 @@ void MainWindow::spawning()
                 break;
             case 4:
                 wrog->level4();
+                break;
+            case 5:
+                wrog->level5();
                 break;
         }
         scene->addItem(wrog);

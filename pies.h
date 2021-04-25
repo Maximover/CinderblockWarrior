@@ -16,7 +16,7 @@ public:
     void lvl2();
     void lvl3();
     void lvl4();
-
+    void lvl5();
 };
 
 #endif // PIES_H

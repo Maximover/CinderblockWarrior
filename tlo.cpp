@@ -36,3 +36,8 @@ void Tlo::level4()
 {
     setPixmap(QPixmap(":/new/prefix1/Stuff/Tlo4.png"));
 }
+
+void Tlo::level5()
+{
+    setPixmap(QPixmap(":/new/prefix1/Stuff/Tlo5.png"));
+}

@@ -30,6 +30,13 @@ void Brama::level4()
     timer->start(speed);
 }
 
+void Brama::level5()
+{
+    setPixmap(QPixmap(":/new/prefix1/Stuff/brama5.png"));
+    this->setPos(0,320);
+    timer->start(speed);
+}
+
 void Brama::clear()
 {
     QList<QGraphicsItem *> colliding_items = collidingItems();

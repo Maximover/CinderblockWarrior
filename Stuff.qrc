@@ -13,7 +13,6 @@
         <file>Stuff/brick.svg</file>
         <file>Stuff/boonk.wav</file>
         <file>Stuff/menu.png</file>
-        <file>Stuff/Megadeth-DukeNukemThemeShort.wav</file>
         <file>Stuff/ster.png</file>
         <file>Stuff/ui.png</file>
         <file>Stuff/Team Fortress 2 Music Flourish.mp3</file>
@@ -35,7 +34,6 @@
         <file>Stuff/congrats.png</file>
         <file>Stuff/pies5.png</file>
         <file>Stuff/pies6.png</file>
-        <file>Stuff/God_Syria_and_Bashar.wav</file>
         <file>Stuff/saper.png</file>
         <file>Stuff/saper_2.png</file>
         <file>Stuff/saper1.png</file>
@@ -52,8 +50,21 @@
         <file>Stuff/demon2_2.png</file>
         <file>Stuff/pies7.png</file>
         <file>Stuff/pies8.png</file>
-        <file>Stuff/The Only Thing they Fear is You.wav</file>
         <file>Stuff/Tlo4.png</file>
         <file>Stuff/brama4.png</file>
+        <file>Stuff/pies9.png</file>
+        <file>Stuff/pies10.png</file>
+        <file>Stuff/Tlo5.png</file>
+        <file>Stuff/pirat.png</file>
+        <file>Stuff/pirat_2.png</file>
+        <file>Stuff/pirat1.png</file>
+        <file>Stuff/pirat1_2.png</file>
+        <file>Stuff/pirat2.png</file>
+        <file>Stuff/pirat2_2.png</file>
+        <file>Stuff/level1theme.wav</file>
+        <file>Stuff/level3theme.wav</file>
+        <file>Stuff/level4theme.wav</file>
+        <file>Stuff/level5theme.mp3</file>
+        <file>Stuff/brama5.png</file>
     </qresource>
 </RCC>

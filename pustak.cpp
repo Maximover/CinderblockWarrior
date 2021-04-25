@@ -7,7 +7,7 @@ Pustak::Pustak()
 
     player = new QMediaPlayer();
     player->setMedia(QUrl("qrc:/new/prefix1/Stuff/boonk.wav"));
-    player->setVolume(80);
+    player->setVolume(30);
 
     timer = new QTimer(this);
     connect(timer,SIGNAL(timeout()),this,SLOT(onTimerTimeout()));

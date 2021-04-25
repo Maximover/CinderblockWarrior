@@ -17,6 +17,8 @@ void Pies::zmienKierunek(bool str)
     else if(!str && level==3)setPixmap(QPixmap(":/new/prefix1/Stuff/pies5.png"));
     if(str && level==4)setPixmap(QPixmap(":/new/prefix1/Stuff/pies8.png"));
     else if(!str && level==4)setPixmap(QPixmap(":/new/prefix1/Stuff/pies7.png"));
+    if(str && level==5)setPixmap(QPixmap(":/new/prefix1/Stuff/pies10.png"));
+    else if(!str && level==5)setPixmap(QPixmap(":/new/prefix1/Stuff/pies9.png"));
     kierunek=str;
 }
 
@@ -44,4 +46,11 @@ void Pies::lvl4()
     level=4;
     setPixmap(QPixmap(":/new/prefix1/Stuff/pies7.png"));
     setPos(740,y()-20);
+}
+
+void Pies::lvl5()
+{
+    level=5;
+    setPixmap(QPixmap(":/new/prefix1/Stuff/pies9.png"));
+    setPos(740,y()-18);
 }

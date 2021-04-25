@@ -25,6 +25,7 @@ public:
     void level2();
     void level3();
     void level4();
+    void level5();
 
     ~Wrog();
 };
