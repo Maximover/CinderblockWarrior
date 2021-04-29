@@ -21,6 +21,7 @@
 #include "pustak.h"
 #include "menu.h"
 #include "brama.h"
+#include "selectlvl.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -57,6 +58,7 @@ private:
     Pustak *pustak;
     Menu *menu;
     Brama *brama;
+    Selectlvl *select;
     int speed;
     int level;
     int maxLevels;

@@ -18,6 +18,7 @@ public:
     QMediaPlayer *player;
 private slots:
     void onTimerTimeout();
+
 };
 
 #endif // PUSTAK_H

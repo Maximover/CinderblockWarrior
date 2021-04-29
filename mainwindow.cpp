@@ -44,6 +44,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     level=1;
     maxLevels=5;
+    select = new Selectlvl();
 }
 
 MainWindow::~MainWindow()
@@ -52,15 +53,9 @@ MainWindow::~MainWindow()
 }
 void MainWindow::play()
 {
-    fx->stop();
-    blockUi=true;
-    inGame=true;
-    lost=false;
     pies=new Pies();
     wrog=new Wrog();
-    scene->removeItem(menu);
-    brama->clear();//usunięcie pozostałych przeciwników
-    scene->addItem(pies); //piesek
+    level=select->getLvl();
     switch(level){
     case 1:
         tlo->level1();
@@ -91,6 +86,13 @@ void MainWindow::play()
         fx->setMedia(QUrl("qrc:/new/prefix1/Stuff/level5theme.mp3"));
         break;
     }
+    fx->stop();
+    blockUi=true;
+    inGame=true;
+    lost=false;
+    scene->removeItem(menu);
+    brama->clear();//usunięcie pozostałych przeciwników
+    scene->addItem(pies); //piesek
     fx->play();
     timer->start(600);
 }
@@ -152,19 +154,32 @@ void MainWindow::pressingKeys()
         }
         return;
     }
-    if(keys[Qt::Key_P] && !blockUi) play(); //zacznij grę
     if(keys[Qt::Key_S] && !blockUi) tlo->control();  //pokaż/schowaj sterowanie
     if(keys[Qt::Key_Q] && !blockUi) QApplication::quit(); //wyjdź
-    if(keys[Qt::Key_N] && !inGame && !lost && level!=maxLevels+1) play(); //przejdź do następnego poziomu
+    if((keys[Qt::Key_N] || keys[Qt::Key_P]) && !inGame && !lost && level!=maxLevels+1) play(); //przejdź do następnego poziomu
     if(keys[Qt::Key_R] && lost){
         lost=false;
         play(); //restart danego poziomu
+    }
+    if(keys[Qt::Key_X] && !blockUi && !delay){
+        delay=true;
+        QTimer::singleShot(5000,this,SLOT(unlock()));
+        select->setModal(true);
+        select->exec();
     }
 }
 void MainWindow::keyPressEvent(QKeyEvent *event)
 {
     if(event->isAutoRepeat())return;
     keys[event->key()]=true;
+    /*
+    if(keys[Qt::Key_M] && !inGame){
+        tlo->menu();
+        brama->clear();
+        blockUi=false;
+        menu->showMenu();
+    }
+    */
 }
 
 void MainWindow::keyReleaseEvent(QKeyEvent *event)
@@ -184,6 +199,7 @@ void MainWindow::win()
     delete pies;
     inGame=false;
     level++;
+    select->increase();
 }
 
 void MainWindow::lose()

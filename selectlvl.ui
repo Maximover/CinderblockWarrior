@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Selectlvl</class>
+ <widget class="QDialog" name="Selectlvl">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>385</width>
+    <height>251</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Wybierz poziom</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="Stuff.qrc">
+    <normaloff>:/new/prefix1/Stuff/brick.svg</normaloff>:/new/prefix1/Stuff/brick.svg</iconset>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QDialog{
+	background-color:black;
+}</string>
+  </property>
+  <widget class="QPushButton" name="ok">
+   <property name="geometry">
+    <rect>
+     <x>289</x>
+     <y>200</y>
+     <width>91</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton{
+	color:black;
+	background-color:snow;
+	border: solid gray 5px;
+}
+QPushButton:hover{
+	color:snow;
+	background-color:black;
+	border:solid snow 5px;
+}</string>
+   </property>
+   <property name="text">
+    <string>Ok</string>
+   </property>
+  </widget>
+  <widget class="QRadioButton" name="lvl1">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>30</y>
+     <width>121</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>16</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QRadioButton{
+	color:snow;
+}</string>
+   </property>
+   <property name="text">
+    <string>Poziom 1</string>
+   </property>
+  </widget>
+  <widget class="QRadioButton" name="lvl2">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>60</y>
+     <width>121</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>16</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QRadioButton{
+	color:snow;
+}</string>
+   </property>
+   <property name="text">
+    <string>Poziom 2</string>
+   </property>
+  </widget>
+  <widget class="QRadioButton" name="lvl3">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>90</y>
+     <width>121</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>16</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QRadioButton{
+	color:snow;
+}</string>
+   </property>
+   <property name="text">
+    <string>Poziom 3</string>
+   </property>
+  </widget>
+  <widget class="QRadioButton" name="lvl4">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>120</y>
+     <width>121</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>16</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QRadioButton{
+	color:snow;
+}</string>
+   </property>
+   <property name="text">
+    <string>Poziom 4</string>
+   </property>
+  </widget>
+  <widget class="QRadioButton" name="lvl5">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>150</y>
+     <width>121</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>16</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QRadioButton{
+	color:snow;
+}</string>
+   </property>
+   <property name="text">
+    <string>Poziom 5</string>
+   </property>
+  </widget>
+ </widget>
+ <resources>
+  <include location="Stuff.qrc"/>
+ </resources>
+ <connections/>
+</ui>

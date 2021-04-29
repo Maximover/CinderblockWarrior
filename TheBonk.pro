@@ -15,6 +15,7 @@ SOURCES += \
     menu.cpp \
     pies.cpp \
     pustak.cpp \
+    selectlvl.cpp \
     tlo.cpp \
     wrog.cpp
 
@@ -24,11 +25,13 @@ HEADERS += \
     menu.h \
     pies.h \
     pustak.h \
+    selectlvl.h \
     tlo.h \
     wrog.h
 
 FORMS += \
-    mainwindow.ui
+    mainwindow.ui \
+    selectlvl.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

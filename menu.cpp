@@ -2,6 +2,11 @@
 
 Menu::Menu()
 {
+    showMenu();
+}
+
+void Menu::showMenu()
+{
     setPixmap(QPixmap(":/new/prefix1/Stuff/ui.png"));
 }
 

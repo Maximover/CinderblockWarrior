@@ -9,6 +9,7 @@ class Tlo : public QObject, public QGraphicsPixmapItem
 {
 public:
     Tlo();
+    void menu();
     void control();
     void level1();
     void level2();

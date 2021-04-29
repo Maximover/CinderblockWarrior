@@ -13,7 +13,6 @@ Pustak::Pustak()
     connect(timer,SIGNAL(timeout()),this,SLOT(onTimerTimeout()));
     timer->start(20);
 }
-
 void Pustak::onTimerTimeout()
 {
     QList<QGraphicsItem *> colliding_items = collidingItems();
