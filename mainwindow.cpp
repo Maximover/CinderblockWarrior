@@ -161,12 +161,6 @@ void MainWindow::pressingKeys()
         lost=false;
         play(); //restart danego poziomu
     }
-    if(keys[Qt::Key_X] && !blockUi && !delay){
-        delay=true;
-        QTimer::singleShot(5000,this,SLOT(unlock()));
-        select->setModal(true);
-        select->exec();
-    }
 }
 void MainWindow::keyPressEvent(QKeyEvent *event)
 {
@@ -185,6 +179,12 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
 void MainWindow::keyReleaseEvent(QKeyEvent *event)
 {
     if(event->isAutoRepeat())return;
+    if(keys[Qt::Key_X] && !blockUi && !delay){
+        delay=true;
+        QTimer::singleShot(5000,this,SLOT(unlock()));
+        select->setModal(true);
+        select->exec();
+    }
     keys[event->key()]=false;
 }
 

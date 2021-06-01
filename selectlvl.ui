@@ -39,8 +39,7 @@
 }
 QPushButton:hover{
 	color:snow;
-	background-color:black;
-	border:solid snow 5px;
+	background-color:gray;
 }</string>
    </property>
    <property name="text">
